@@ -37,6 +37,19 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Fix built HTML asset paths for GitHub Pages
+        # Ensure asset URLs are relative so Pages serves them from the repo subpath
+        run: |
+          echo "Patching dist/index.html to use relative asset paths"
+          if [ -f dist/index.html ]; then
+            sed -i 's|href="/index.css"|href="./index.css"|g' dist/index.html || true
+            sed -i 's|href="/assets/|href="./assets/|g' dist/index.html || true
+            sed -i 's|src="/assets/|src="./assets/|g' dist/index.html || true
+            sed -i 's|src="/index.css"|src="./index.css"|g' dist/index.html || true
+          else
+            echo "dist/index.html not found, skipping patch"
+          fi
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
