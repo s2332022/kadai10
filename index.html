@@ -8,11 +8,29 @@
   <script type="importmap">
 
 </script>
-<link rel="stylesheet" href="/index.css">
+<link rel="stylesheet" href="./index.css">
 </head>
   <body class="bg-light">
     <div id="root"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="/index.tsx"></script>
+  <!-- Fix for GitHub Pages: if built asset URLs are absolute (start with '/'),
+       rewrite them to relative paths at runtime so Pages can load assets from
+       the repository subpath. This runs before the module script is fetched. -->
+  <script>
+    (function () {
+      function rewrite(el, attr) {
+        var v = el.getAttribute(attr);
+        if (v && v.charAt(0) === '/') {
+          el.setAttribute(attr, '.' + v);
+        }
+      }
+      // rewrite potential CSS and script tags
+      var links = document.getElementsByTagName('link');
+      for (var i = 0; i < links.length; i++) rewrite(links[i], 'href');
+      var scripts = document.getElementsByTagName('script');
+      for (var j = 0; j < scripts.length; j++) rewrite(scripts[j], 'src');
+    })();
+  </script>
+  <script type="module" src="./index.tsx"></script>
 </body>
 </html>
