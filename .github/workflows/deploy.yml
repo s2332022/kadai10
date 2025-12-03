@@ -5,13 +5,23 @@ on:
     branches:
       - main
 
+# Give the workflow the permissions needed to push the built `dist/` to gh-pages
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # job-level permissions also set to be explicit
+    permissions:
+      contents: write
+      pages: write
     steps:
       - uses: actions/checkout@v4
+        # Allow the GITHUB_TOKEN to be persisted so downstream steps can push
         with:
-          persist-credentials: false # otherwise the token used is the GITHUB_TOKEN and the action cannot push
+          persist-credentials: true
 
       - name: Use Node.js
         uses: actions/setup-node@v4
