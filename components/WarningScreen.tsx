@@ -16,18 +16,18 @@ export const WarningScreen: React.FC<WarningScreenProps> = ({ onReset }) => {
           </div>
 
           <h1 className="h2 fw-bold text-danger mb-3">
-            警告: セキュリティ問題が発生しました
+            警告: あなたの情報はぬすまれました！ｗ
           </h1>
 
           <p className="text-secondary mb-4">
-            システムに問題が検出されました。対処してください。
+            おつかれさまです
           </p>
 
           <div className="bg-white p-3 rounded border border-danger-subtle shadow-sm mb-4 text-start">
             <h6 className="small fw-bold text-muted text-uppercase mb-2">ステータス</h6>
             <div className="d-flex align-items-center text-danger font-monospace small">
               <span className="d-inline-block rounded-circle bg-danger me-2" style={{ width: '8px', height: '8px' }}></span>
-              WARNING: セキュリティリスクが検出されました
+              WARNING: きけんがあぶない！！！
             </div>
           </div>
 
