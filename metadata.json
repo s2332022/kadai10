@@ -1,0 +1,5 @@
+{
+  "name": "Login Security Demo",
+  "description": "A demonstration login page with a surprise alert message upon submission.",
+  "requestFramePermissions": []
+}
